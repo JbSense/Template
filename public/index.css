@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 62.5%;
+    font-family: 'Montserrat', sans-serif;
+
+    text-decoration: none;
+    color: #000;
+    list-style: none;
+    outline: none;
+}
+
+
+/* Variáveis de css */
+:root {
+    --header-height: 6.5rem;
+    --easy-gray: #f7f7f7;
+}
+
+
+/* Config do body */
+body {
+    width: 100%;
+    background-color: var(--easy-gray);
+    
+    display: flex;
+    flex-direction: column;
+}
+
+/* Padrões de estilo */
+
+/* Estilos que abrangem todo o projeto e podem ser chamados em qualquer arquivo */
+ .title-b {
+    font-size: 3rem;
+}
+
+.title-m {
+    font-size: 2.3rem;
+}
+
+.title-s {
+    font-size: 1.8rem;
+}
+
+.btn-orange {
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    text-align: center;
+    color: #fff;
+    background-color: #ff7b00;
+    cursor: pointer;
+}
+
+header {
+    width: 100%;
+    height: var(--header-height);
+    padding: 0% 5%;
+    background-color: #000;
+    opacity: 95%;
+
+    grid-row: 1/2;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+header h1 {
+    padding: 1rem;
+    background-color: #ff7b00;
+    border-radius: 8px;
+
+    font-size: 1.8rem;
+    color: #fff;
+}
+
+
+/* Conteúdo da página */
+.content {
+    width: 100%;
+    position: relative;
+
+    grid-row: 2/3;
+
+    display: flex;
+    justify-content: center;
+}
+
+
+/* Página home */
+.home {
+    width: 100%;
+    height: calc(100vh - var(--header-height));
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home div {
+    width: 350px;
+    height: 230px;
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    border-radius: 5px;
+
+    margin: 0rem 2rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.home div .title {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.home div select {
+    padding: 1rem;
+    font-size: 1.6rem;
+}
+.home div select option {
+    font-size: 1.6rem;
+}
+
+.home div a {
+    width: 60%;
+    padding: 1.5rem 0rem;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    text-align: center;
+    color: #fff;
+    background-color: #ff7b00;
+}
+
