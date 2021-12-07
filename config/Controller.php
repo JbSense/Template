@@ -1,6 +1,7 @@
 <?php
 
-include '../../autoload.php';
+include '../../app/Models/Template.php';
+include '../../app/Models/Param.php';
 
 class Controller {
     public function __construct() {

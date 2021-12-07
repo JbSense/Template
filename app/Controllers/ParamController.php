@@ -6,14 +6,28 @@ include '../../autoload.php';
  * 
  */
 class ParamController extends Controller {
-    public function getTemplates() {
-        
-    }
+    public function getParams() {
+        $id = $_GET['data'] ? $_GET['data'] : null;
 
-    public function createTemplate() {
-        
+        if($id) {
+            $result = $this->param->get("WHERE template = '$id'");
+            echo $result;
+
+        } else {
+            $result = $this->param->get();
+    
+            for($i = 0; $i < count($result); $i++) {
+                echo $result;
+            }
+        }
     }
 }
 
-$template = new TemplateController();
-$result = $template->$_POST['function']();
+if(isset($_POST['function'])) {
+    $param = new ParamController();
+    $result = $param->$_POST['function']();
+    
+} elseif (isset($_GET['function'])) {
+    $param = new ParamController();
+    $result = $param->$_GET['function']();
+}

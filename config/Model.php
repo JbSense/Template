@@ -1,7 +1,5 @@
 <?php
 
-include 'database.php';
-
 class Model {
     public function __construct() {
         /**
@@ -16,10 +14,10 @@ class Model {
      * @return function -> conexão.
      */
     private function connect() {
-        $HOST = constant('HOST');
-        $DATABASE = constant('DATABASE');
-        $USER = constant('USER');
-        $PASSWORD = constant('PASSWORD');
+        $HOST = 'localhost';
+        $DATABASE = 'template';
+        $USER = 'root';
+        $PASSWORD = '';
 
         return new PDO("mysql:host=$HOST;dbname=$DATABASE", $USER, $PASSWORD);
     }
@@ -32,13 +30,10 @@ class Model {
     public function create($data) {
         if(array_keys($data) != $this->rows) return false; // Valida se os campos passados são autorizados.
 
-        $values = explode(',', implode(',', $data));
+        $keys = implode(',', array_keys($data));
+        $values = implode(',', $data);
 
-        for($x = 0; $x < count($values); $x++) {
-            $values[$x] = "'$values[$x]'";
-        }
-
-        $query = "INSERT INTO ".$this->table."(".implode(',', array_keys($data)).") "."VALUES "."(".implode(',', $values).")";
+        $query = "INSERT INTO $this->table($keys) VALUES ($values)";
         $conn = $this->connect();
         $sql = $conn->prepare($query);
         $sql->execute();
@@ -78,7 +73,8 @@ class Model {
         $sql = $conn->prepare($query);
         $sql->execute();
 
-        return $sql->fetchAll();
+        $result = json_encode($sql->fetchAll());
+        return $result;
     }
 }
 
