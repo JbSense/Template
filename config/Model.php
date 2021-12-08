@@ -72,8 +72,9 @@ class Model {
 
         $sql = $conn->prepare($query);
         $sql->execute();
-
+        
         $result = json_encode($sql->fetchAll());
+        var_dump($result);
         return $result;
     }
 }

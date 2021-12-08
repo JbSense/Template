@@ -7,10 +7,10 @@ include '../../autoload.php';
  */
 class ParamController extends Controller {
     public function getParams() {
-        $id = $_GET['data'] ? $_GET['data'] : null;
+        $id = $_GET['data'];
 
         if($id) {
-            $result = $this->param->get("WHERE template = '$id'");
+            $result = $this->param->get("WHERE template = $id");
             echo $result;
 
         } else {

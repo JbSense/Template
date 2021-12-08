@@ -10,6 +10,7 @@ class Param extends Model {
         "template",
         "type",
         "name",
+        "reference",
         "options"
     ];
 }

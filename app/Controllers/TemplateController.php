@@ -7,7 +7,7 @@ include '../../config/Controller.php';
  */
 class TemplateController extends Controller {
     public function getTemplates() {
-        $id = $_GET['data'] ? $_GET['data'] : null;
+        $id = $_GET['data'];
 
         if($id) {
             $result = $this->template->get("WHERE id = '$id'");

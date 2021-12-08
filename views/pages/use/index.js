@@ -1,53 +1,85 @@
 
 
 
-function backend(props) {
+var messageDefault = ''
+var messageIndex = ''
+
+function backend(controller, func, data) {
     return $.ajax({
-        url: `http://localhost/template/app/Controllers/${props.controller}Controller.php`,
+        url: `http://localhost/template/app/Controllers/${controller}Controller.php`,
         type: 'GET',
         data: {
-            "function": props.function,
-            "data": props.data
+            "function": func,
+            "data": data
         }
     })
 }
 
+
+/**
+ * Chamada sempre que a página é carregada
+ */
 function loadPage() {
     var id = window.location.href.toString().split('/')[5]
 
-    var templates = backend({
-        controller: 'Template',
-        function: 'getTemplates',
-        data: id
-    })
-
-    templates.then(response => {
+    backend('Template', 'getTemplates', id).then(response => {
+        
         var template = JSON.parse(response)[0]
-        constructPage(template.name)
+        console.log(response)
+        constructPage(template)
     })
 
 
-    var params = backend({
-        controller: 'Param',
-        function: 'getParams',
-        data: id
-    })
+    backend('Param', 'getParams', id).then(response => {
 
-    params.then(response => {
-        var param = JSON.parse(response)
+        console.log(response)
+        var param = response
 
-        param.map((data) => {
+        // param.map((data) => {
             
-            test({
-                name: data.name,
-                type: data.type
-            })
-        })
+        //     test({
+        //         name: data.name,
+        //         type: data.type
+        //     })
+        // })
     })
 }
 
+
+function constructInput(data) {
+
+}
+
+
+/**
+ * Atualiza a mensagem no frontend
+ * 
+ * @param {string} message 
+ */
+function setMessage(message) {
+
+    var messageArray2 = message.split(' ')
+    var paramsIndex = []
+
+    for(var i = 0; i < messageArray2.length; i++) {
+        
+        if(messageArray2[i].includes('{')) {
+            paramsIndex[messageArray2[i]] = i
+        }
+    }
+
+    messageIndex = paramsIndex
+}
+
+
+/**
+ * Função que constrói a página
+ * 
+ * @param {json} data dados do template
+ */
 function constructPage(data) {
-    document.querySelector('#template_name').innerText = 'Template de ' + data
+    document.querySelector('#template_name').innerText = 'Template de ' + data.name
+    document.querySelector('#message').innerText = data.message
 }
 
 function test(data) {
@@ -56,8 +88,9 @@ function test(data) {
 
     var name = document.createElement('p')
     name.innerText = data.name
-
+    
     var input = document.createElement('input')
+    input.setAttribute('oninput', `saveParam('${data.name}')`)
     input.type = data.type
     input.name = data.name.toLowerCase()
     input.placeholder = 'Digite'
@@ -68,7 +101,24 @@ function test(data) {
     document.querySelector('.params').appendChild(div)
 }
 
-// test({
-//     name: 'E-mail',
-//     type: 'email'
-// })
+
+/**
+ * Salva um parâmetro na mensagem
+ */
+function saveParam(name) {
+    var name = name.replace('{', '')
+    var name = name.replace('}', '')
+
+    var value = document.getElementsByName(name)[0].value
+    var messageArray = messageDefault.split(' ')
+
+    for(var i = 0; i < messageIndex.length; i++) {
+        if(messageIndex[i].includes(name)) {
+            console.log(messageIndex[i])
+            messageArray[messageIndex[i]] = value
+        }
+    }
+
+    document.querySelector('#message').innerText = messageArray.join(' ')
+    // messageDefault = messageArray.join(' ')
+}

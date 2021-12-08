@@ -15,11 +15,17 @@
 /* Variáveis de css */
 :root {
     --header-height: 6.5rem;
+
+    /* Cores */
     --easy-gray: #f7f7f7;
+    --color-orange: #fe7e00;
+    --color-ice: #e9ecef;
 }
 
 
-/* Config do body */
+/* 
+ * Estilos padrão de todo o projeto 
+ */
 body {
     width: 100%;
     background-color: var(--easy-gray);
@@ -28,10 +34,20 @@ body {
     flex-direction: column;
 }
 
-/* Padrões de estilo */
+input, select, textarea {
+    padding: .5rem;
+    border: none;
+}
 
-/* Estilos que abrangem todo o projeto e podem ser chamados em qualquer arquivo */
- .title-b {
+textarea {
+    resize: none;
+}
+
+
+/*
+ * Classes que podem ser utilizadas em todo o projeto 
+ */
+.title-b {
     font-size: 3rem;
 }
 
@@ -48,12 +64,31 @@ body {
     border: none;
     border-radius: 5px;
     font-size: 1.6rem;
+    font-weight: 600;
     text-align: center;
     color: #fff;
-    background-color: #ff7b00;
+    background-color: var(--color-orange);
     cursor: pointer;
 }
 
+.container-ux {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+.input-ux {
+    padding: 1.5rem;
+    background-color: var(--color-ice);
+    border-radius: 8px;
+    font-size: 1.8rem;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+
+/*
+ * Header
+ */
 header {
     width: 100%;
     height: var(--header-height);
@@ -70,7 +105,7 @@ header {
 
 header a {
     padding: 1rem;
-    background-color: #ff7b00;
+    background-color: var(--color-orange);
     border-radius: 8px;
     font-size: 1.8rem;
     font-weight: bold;
@@ -78,7 +113,9 @@ header a {
 }
 
 
-/* Conteúdo da página */
+/* 
+ * Conteúdo da página
+ */
 .content {
     width: 100%;
     position: relative;
