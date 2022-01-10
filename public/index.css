@@ -11,8 +11,6 @@
     outline: none;
 }
 
-
-/* Variáveis de css */
 :root {
     --header-height: 6.5rem;
 
@@ -22,10 +20,6 @@
     --color-ice: #e9ecef;
 }
 
-
-/* 
- * Estilos padrão de todo o projeto 
- */
 body {
     width: 100%;
     background-color: var(--easy-gray);
@@ -43,10 +37,6 @@ textarea {
     resize: none;
 }
 
-
-/*
- * Classes que podem ser utilizadas em todo o projeto 
- */
 .title-b {
     font-size: 3rem;
 }
@@ -85,10 +75,6 @@ textarea {
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
-
-/*
- * Header
- */
 header {
     width: 100%;
     height: var(--header-height);
@@ -112,10 +98,6 @@ header a {
     color: #fff;
 }
 
-
-/* 
- * Conteúdo da página
- */
 .content {
     width: 100%;
     position: relative;
