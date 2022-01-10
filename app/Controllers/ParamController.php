@@ -2,9 +2,6 @@
 
 include '../../autoload.php';
 
-/**
- * 
- */
 class ParamController extends Controller {
     public function getParams() {
         $id = $_GET['data'];
