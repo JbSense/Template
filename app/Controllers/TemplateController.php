@@ -2,9 +2,6 @@
 
 include '../../config/Controller.php';
 
-/**
- * 
- */
 class TemplateController extends Controller {
     public function getTemplates() {
         $id = $_GET['data'];
